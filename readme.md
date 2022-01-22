@@ -1,2 +1,2 @@
-# sipbmn
- Sistem Informasi Pengelolaan BMN
+# Klinik dr. Yoseph Christian
+
