@@ -40,6 +40,7 @@
             <thead>
             <tr style="background-color:#018975; color:#fff">
               <th>No</th>
+              <th>NRM</th>
               <th>Nama</th>
               <th>Alamat</th>
               <th>No. HP</th>
@@ -53,6 +54,7 @@
             @foreach($pasien as $data)  
                <tr>
                   <td>{{++$no}}</td>
+                  <td>{{$data->NRM}}</td>
                   <td>{{$data->nama}}</td>
                   <td>{{$data->alamat}}</td>
                   <td>{{$data->no_hp}}</td>

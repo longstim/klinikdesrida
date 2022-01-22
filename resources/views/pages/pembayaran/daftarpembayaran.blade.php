@@ -38,10 +38,11 @@
             <thead>
             <tr style="background-color:#018975; color:#fff">
               <th>No</th>
+              <th>NRM</th>
               <th>Nama</th>
               <th>Alamat</th>
               <th>No. HP</th>
-              <th>Harga</th>
+              <th>Harga (Rp)</th>
               <th>Status</th>
               <th style="width:30%">Tindakan</th>
             </tr>
@@ -53,13 +54,14 @@
             @foreach($rekam_medis as $data)  
                <tr>
                   <td>{{++$no}}</td>
+                  <td>{{$data->NRM}}</td>
                   <td>{{$data->nama}}</td>
                   <td>{{$data->alamat}}</td>
                   <td>{{$data->no_hp}}</td>
-                  <td>{{formatRUpiah($data->harga)}}</td>
+                  <td>{{formatNumber($data->harga)}}</td>
                   <td><span class="badge badge-secondary">Belum Bayar</span></td>
                   <td style="text-align:center;">
-                    <a class="btn btn-warning btn-sm" href="detailpasien/{{$data->id}}">Edit</a>&nbsp;
+                    <a class="btn btn-warning btn-sm" href="detailpasien/{{$data->id_pasien}}">Detail</a>&nbsp;
                     <a class="btn btn-danger btn-sm swalDelete" href="prosesbatalpembayaran/{{$data->id}}">Batal</a>&nbsp;
                     <a class="btn btn-primary btn-sm swalLunas" href="proseslunaspembayaran/{{$data->id}}">Lunas</a>
                     <a class="btn btn-info btn-sm" href="cetakkuitansi/{{$data->id}}">Kuitansi</a>&nbsp;

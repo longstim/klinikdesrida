@@ -58,6 +58,10 @@ Route::get('prosesbatalpembayaran/{id_rekam_medis}', 'PembayaranController@prose
 
 Route::get('cetakkuitansi/{id_rekam_medis}', 'PembayaranController@cetakkuitansi');
 
+Route::post('cetaksuratsakit', 'PembayaranController@cetaksuratsakit');
+
+Route::post('cetaksuratsehat', 'PembayaranController@cetaksuratsehat');
+
 
 //Laporan
 Route::get('laporanpasienberobat', 'LaporanController@laporanpasienberobat');
@@ -67,4 +71,5 @@ Route::get('laporanpembayaran', 'LaporanController@laporanpembayaran');
 Route::post('cariLaporanPasienBerobat', 'LaporanController@cariLaporanPasienBerobat');
 
 Route::post('cariLaporanPembayaran', 'LaporanController@cariLaporanPembayaran');
+
 

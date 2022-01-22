@@ -37,7 +37,7 @@
         <table class="table">
           <tr>
             <th style="width:30%">NRM</th>
-            <td>{{$pasien->id}}</td>
+            <td>{{$pasien->NRM}}</td>
           </tr>
           <tr>
             <th style="width:30%">Nama</th>
@@ -71,7 +71,7 @@
                 Temperatur : <b>{{$data->temperatur}} °C</b> <br/>
                 Tensi : <b>{{$data->tensi}} mmHg</b> <br/>
                 Keluhan : <b>{{$data->keluhan}}</b> <br/>
-                Diagnosa : <b>{{$data->diagnosa}}</b> <br/>
+                Diagnosa : <b>{{diagnosaPasien($data->id_rekammedis)}}</b> <br/>
                 Alergi : <b>{{$data->alergi}} </b> <br/>
                 Catatan : <b>{{$data->catatan}} </b> <br/>
                 Obat : <b>{{$data->obat}}</b> <br/>

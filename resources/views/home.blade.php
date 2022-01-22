@@ -29,7 +29,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="{{url('pasienberobat')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{url('laporanpasienberobat')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -44,7 +44,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="{{url('pembayaran')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{url('laporanpembayaran')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
         <!-- ./col -->

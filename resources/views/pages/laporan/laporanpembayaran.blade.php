@@ -74,6 +74,7 @@
             <thead>
             <tr style="background-color:#018975; color:#fff">
               <th>No</th>
+              <th>NRM</th>
               <th>Nama</th>
               <th>Alamat</th>
               <th>No. HP</th>
@@ -89,13 +90,22 @@
             @foreach($historypasien as $data)  
                <tr>
                   <td>{{++$no}}</td>
+                  <td>{{$data['NRM']}}</th>
                   <td>{{$data['nama']}}</td>
                   <td>{{$data['alamat']}}</td>
                   <td>{{$data['no_hp']}}</td>
                   <td>{{customTanggalDateTime($data['tanggal_pembayaran'], 'd-m-Y')}}</td>
                   <td>{{formatRUpiah($data['harga'])}}</td>
-                  <td style="text-align:center;">
-                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data['id']}}">Detail</a>&nbsp;
+                  <td>
+                    <div class="btn-group">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Cetak
+                      <span class="caret"></span>
+                      </button>
+                      <div class="dropdown-menu" id="dropdown-action-id">
+                        <a class="dropdown-item" href="{{url('cetaksuratsakit')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sakit">Surat Sakit</a>
+                        <a class="dropdown-item" href="{{url('cetaksuratsehat')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sehat">Surat Sehat</a>
+                      </div>
+                    </div>
                   </td>
                </tr>
             @endforeach
@@ -108,6 +118,112 @@
     </div>
     <!-- /.col -->
   </div>
+
+  <!-- Modal Surat Sakit-->
+<div class="modal fade" id="modal-detail-sakit">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+         <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+      <!-- jquery validation -->
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Cetak Surat Sakit</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" id="cetaksuratsakit" method="post" action="{{url('cetaksuratsakit')}}" >
+            {{ csrf_field() }}
+      
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="id_header" class="form-control" id="txtIDHeader" value="{{$data['id_rekammedis']}}"></input>
+                    <div class="form-group">
+                      <label>Tanggal Sakit</label>
+                      <div class="row">
+                         <div class="col-md-4">
+                          <div class="input-group date">
+                                <input type="text" name="tanggal_awal" class="form-control" id="datepickerawal" placeholder="dd/mm/yyyy" value="{{date('d/m/Y', strtotime(now()))}}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                          <h5 style="margin-left: 10px">s/d</h5>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-group date">
+                              <input type="text" name="tanggal_akhir" class="form-control" id="datepickerakhir" placeholder="dd/mm/yyyy" value="{{date('d/m/Y', strtotime(now()))}}">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <button type="submit" id="cetakdetailsuratsakit" class="btn btn-secondary">Cetak &nbsp;<i class="fas fa-print"></i></button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <!-- /.card-body -->
+          </form>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+</div>
+<!-- Modal Surat Sakit-->
+
+<!-- Modal Surat Sehat-->
+<div class="modal fade" id="modal-detail-sehat">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+         <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+      <!-- jquery validation -->
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Cetak Surat Keterangan Berbadan Sehat</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" id="cetaksuratsakit" method="post" action="{{url('cetaksuratsehat')}}" >
+            {{ csrf_field() }}
+      
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="id_header" class="form-control" id="txtIDHeader" value="{{$data['id_rekammedis']}}"></input>
+                    <div class="form-group">
+                      <div class="row">
+                         <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Untuk Keperluan</label>
+                            <input type="text" name="keperluan" class="form-control" id="txtKeperluan" Placeholder="Keperluan"></textarea>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer float-right">
+               <button type="submit" id="cetakdetailsuratsehat" class="btn btn-secondary">Cetak &nbsp;<i class="fas fa-print"></i></button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+</div>
+<!-- Modal Surat Sehat-->
 
   <script src="{{asset('js/jquery.min.js')}}"></script>
   <script>
@@ -175,12 +291,18 @@
       });
     });
 
-    //Date picker2
-    $('#datepicker2').datepicker({
+    //datepicker
+    $('#datepickerawal').datepicker({
       format: 'dd/mm/yyyy',
       autoclose: true
     })
 
-  });
+    $('#datepickerakhir').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    })
+
+   });
+
   </script>
 @endsection

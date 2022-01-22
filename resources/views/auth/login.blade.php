@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Klinik dr. Desrida</title>
+  <title>Klinik dr. Yoseph Christian</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-success">
     <div class="card-header text-center">
-      <h1><b>Klinik</b> dr. Desrida</h1>
+      <h3>Klinik <b>dr. Yoseph Christian</b></h3>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Silahkan masuk untuk mengakses sistem</p>

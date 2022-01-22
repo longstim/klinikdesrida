@@ -61,10 +61,10 @@
 	                    <option value="Wanita" @if($pasien->jenis_kelamin == "Wanita") selected @endif>Wanita</option>
 	                </select>
 				      </div>
-				      <div class="form-group">
-					      	<label>Riwayat Alergi</label>
-					        <textarea name="riwayat_alergi" class="form-control" id="txtRiwayatAlergi" rows="2" placeholder="Riwayat Alergi">{{$pasien->riwayat_alergi}}</textarea>
-					    </div>
+				     	<div class="form-group">
+				        <label>Nama Orang Tua</label>
+				        <input type="text" name="nama_orangtua" class="form-control" id="txtNamaOrangtua" value="{{$pasien->nama_orangtua}}" placeholder="Nama Orang Tua">
+				      </div>
 						</div>
 					</div>
 			</div>
@@ -100,7 +100,7 @@
 	      jenis_kelamin: {
 	        required: true
 	      },
-	      riwayat_alergi: {
+	      nama_orangtua: {
 	        required: true
 	      },
 	    },
@@ -120,8 +120,8 @@
 	      jenis_kelamin: {
 	        required: "Jenis Kelamin harus dipilih."
 	      },
-	      riwayat_alergi: {
-	        required: "Riwayat Alergi harus diisi."
+	      nama_orangtua: {
+	        required: "Nama Orang Tua harus diisi."
 	      },
 	    },
 	    errorElement: 'span',

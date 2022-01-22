@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Klinik dr. Desrida</title>
+  <title>Klinik dr. Yoseph Christian</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -41,7 +41,7 @@
       </li>
 
     </ul>
-    <h5>Selamat Datang di Sistem Informasi Klinik dr. Desrida</h5>
+    <h5>Selamat Datang di Sistem Informasi Klinik dr. Yoseph Christian</h5>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Logout Dropdown Menu 
@@ -86,7 +86,7 @@
     <a href="{{url('/')}}" class="brand-link">
       <img src="{{asset('image/logo.png')}}" alt="Klinik dr. Desrida" class="brand-image img-circle"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Klinik dr. Desrida</span>
+      <span class="brand-text font-weight-light">dr. Yoseph Christian</span>
     </a>
 
     <!-- Sidebar -->

@@ -24,7 +24,7 @@ class PembayaranController extends Controller
         $rekam_medis=DB::table('td_rekam_medis')->where('td_rekam_medis.status', '=', 1)
                 ->leftjoin('td_berobat AS t1', 'td_rekam_medis.id_berobat', '=', 't1.id')
                 ->leftjoin('md_pasien AS t2', 't1.id_pasien', '=', 't2.id')
-                ->select('td_rekam_medis.*', 't2.nama AS nama', 't2.alamat', 't2.no_hp')
+                ->select('td_rekam_medis.*', 't2.id AS id_pasien', 't2.NRM AS NRM', 't2.nama AS nama', 't2.alamat', 't2.no_hp')
                 ->get(); 
 
         return view('pages.pembayaran.daftarpembayaran', compact('rekam_medis'));
@@ -48,7 +48,6 @@ class PembayaranController extends Controller
 
         return Redirect::to('pembayaran')->with('message','Berhasil menyimpan data');
     }
-
 
     public function prosesbatalpembayaran($id_rekam_medis)
     {
@@ -74,9 +73,62 @@ class PembayaranController extends Controller
         $rekam_medis=DB::table('td_rekam_medis')->where('td_rekam_medis.id', '=', $id_rekam_medis)
                 ->leftjoin('td_berobat AS t1', 'td_rekam_medis.id_berobat', '=', 't1.id')
                 ->leftjoin('md_pasien AS t2', 't1.id_pasien', '=', 't2.id')
-                ->select('td_rekam_medis.*', 't2.nama AS nama', 't2.alamat', 't2.no_hp')
+                ->select('td_rekam_medis.*', 't2.NRM AS NRM','t2.nama AS nama', 't2.alamat', 't2.no_hp')
                 ->first(); 
 
         return view('pages.pembayaran.cetakkuitansi', compact('rekam_medis'));
+    }
+
+    public function cetaksuratsakit(Request $request)
+    {
+        $rekam_medis=DB::table('td_rekam_medis')
+                ->where('td_rekam_medis.id', '=', $request->input('id_header'))
+                ->leftjoin('td_berobat AS t1', 'td_rekam_medis.id_berobat', '=', 't1.id')
+                ->leftjoin('md_pasien AS t2', 't1.id_pasien', '=', 't2.id')
+                ->select('td_rekam_medis.*', 't2.NRM AS NRM', 't2.nama AS nama', 't2.alamat', 't2.no_hp', 't2.tanggal_lahir AS tanggal_lahir')
+                ->first(); 
+
+        
+        $newTanggalAwal = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_awal'))->format('d-m-Y');
+        $newTanggalAkhir = Carbon::createFromFormat('d/m/Y', $request->input('tanggal_akhir'))->format('d-m-Y');
+
+        $dateAwal = strtotime($newTanggalAwal);
+        $dateAkhir = strtotime($newTanggalAkhir);
+
+        $datediff = $dateAkhir - $dateAwal;
+
+        $days = round($datediff / 86400) + 1;
+
+        $newTanggalLahir = Carbon::createFromFormat('Y-m-d', $rekam_medis->tanggal_lahir)->format('d-m-Y');
+
+        $datasakit = array(
+            'tanggal_awal' => $newTanggalAwal,
+            'tanggal_akhir' => $newTanggalAkhir,
+            'jlh_hari' => $days,
+            'umur' => getAge($newTanggalLahir),
+        );
+        
+
+        return view('pages.pembayaran.cetaksuratsakit', compact('rekam_medis', 'datasakit'));
+    }
+
+    public function cetaksuratsehat(Request $request)
+    {
+        $rekam_medis=DB::table('td_rekam_medis')
+                ->where('td_rekam_medis.id', '=', $request->input('id_header'))
+                ->leftjoin('td_berobat AS t1', 'td_rekam_medis.id_berobat', '=', 't1.id')
+                ->leftjoin('md_pasien AS t2', 't1.id_pasien', '=', 't2.id')
+                ->select('td_rekam_medis.*', 't2.NRM AS NRM', 't2.nama AS nama', 't2.alamat', 't2.no_hp', 't2.tanggal_lahir AS tanggal_lahir')
+                ->first(); 
+
+        $newTanggalLahir = Carbon::createFromFormat('Y-m-d', $rekam_medis->tanggal_lahir)->format('d-m-Y');
+
+        $datasehat = array(
+            'tanggal_lahir' => $newTanggalLahir,
+            'keperluan' => $request->input('keperluan'),
+        );
+        
+
+        return view('pages.pembayaran.cetaksuratsehat', compact('rekam_medis', 'datasehat'));
     }
 }

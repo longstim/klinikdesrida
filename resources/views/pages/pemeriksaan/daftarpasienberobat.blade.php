@@ -38,6 +38,7 @@
             <thead>
             <tr style="background-color:#018975; color:#fff">
               <th>No</th>
+              <th>NRM</th>
               <th>Nama</th>
               <th>Alamat</th>
               <th>No. HP</th>
@@ -51,11 +52,12 @@
             @foreach($pasienberobat as $data)  
                <tr>
                   <td>{{++$no}}</td>
+                  <td>{{$data->NRM}}</td>
                   <td>{{$data->nama}}</td>
                   <td>{{$data->alamat}}</td>
                   <td>{{$data->no_hp}}</td>
                   <td style="text-align:center;">
-                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id}}">Detail</a>&nbsp;
+                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id_pasien}}">Detail</a>&nbsp;
                     <a class="btn btn-info btn-sm" href="pemeriksaanpasien/{{$data->id}}">Tangani</a>
                   </td>
                </tr>

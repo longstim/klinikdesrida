@@ -22,6 +22,11 @@
   {
     color:#fff;
   }
+
+  #addDropDownDiagnosa .table td
+  {
+    padding: 0 rem;
+  }
 </style>
   <div class="row">
     <div class="col-12">
@@ -31,30 +36,103 @@
             <input type="hidden" name="txtMessage_text" id="idmessage_text" value="{{Session::get('message')}}"></input>
         @endif
       </div>
-
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th style="width:30%">NRM</th>
-            <td>{{$pasienberobat->id}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">Nama</th>
-            <td>{{$pasien->nama}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">Alamat</th>
-            <td>{{$pasien->alamat}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">No. HP</th>
-            <td>{{$pasien->no_hp}}</td>
-          </tr>
-        </table>
-       </div>
-
-      <form role="form" id="pemeriksaanpasien" method="post" action="{{url('prosespemeriksaanpasien')}}" >
+  <form role="form" id="pemeriksaanpasien" method="post" action="{{url('prosespemeriksaanpasien')}}" >
         {{ csrf_field() }}
+    <div class="row">
+      <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <tr>
+                <th>NRM</th>
+                 <td>:</td>
+                <td>{{$pasienberobat->id}}</td>
+              </tr>
+              <tr>
+                <th>Nama</th>
+                 <td>:</td>
+                <td>{{$pasien->nama}}</td>
+              </tr>
+              <tr>
+                <th>Alamat</th>
+                 <td>:</td>
+                <td>{{$pasien->alamat}}</td>
+              </tr>
+              <tr>
+                <th>No. HP</th>
+                 <td>:</td>
+                <td>{{$pasien->no_hp}}</td>
+              </tr>
+            </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <tr>
+                <th>Tensi</th>
+                <td>:</td>
+                <td>
+                  <div class="row">
+                    <div class="input-group col-md-12">
+                      <input type="text" name="tensi" class="form-control" id="txtTensi" value="{{$rekam_medis[0]['tensi']}}" placeholder="Tensi">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">mmHg</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+              <th>Tinggi Badan</th>
+              <td>:</td>
+              <td>
+                <div class="row">
+                  <div class="input-group col-md-12">
+                    <input type="text" name="tinggi" class="form-control" id="txtTinggi" value="{{$rekam_medis[0]['tinggi']}}" placeholder="Tinggi">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&nbsp;&nbsp;&nbsp;cm&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Berat Badan</th>
+              <td>:</td>
+              <td>
+                <div class="row">
+                  <div class="input-group col-md-12">
+                    <input type="text" name="berat" class="form-control" id="txtBerat" value="{{$rekam_medis[0]['berat']}}" placeholder="Berat">  
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;Kg&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Temperatur</th>
+              <td>:</td>
+              <td>
+                <div class="row">
+                  <div class="input-group col-md-12">
+                    <input type="text" name="temperatur" class="form-control" id="txtTemperatur" value="{{$rekam_medis[0]['temperatur']}}" placeholder="Temperatur">  
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;°C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+                <th>Alergi</th>
+                <td>:</td>
+                <td><textarea name="alergi" class="form-control" id="txtAlergi" rows="2" placeholder="Alergi">{{$rekam_medis[0]['alergi']}}</textarea></td>
+            </tr>
+            </table>
+        </div>
+      </div>
+    </div>
       <div class="card card-success">
         <div class="card-header">
           <h3 class="card-title">Rekam Medis</h3>
@@ -72,73 +150,34 @@
                 <tr>
                   <th style="width:30%">Diagnosa</th>
                    <td>:</td>
-                  <td><input type="text" name="diagnosa" class="form-control{{ $errors->has('diagnosa') ? ' is-invalid' : '' }}" id="txtDiagnosa" value="{{old('diagnosa') }}" placeholder="Diagnosa"></td>
+                  <td>
+                    <div class="row" id="DropDownDiagnosa">
+                      <div class="input-group col-md-10">
+                        <select name="diagnosa[]" id="id_diagnosa" class="form-control select2bs4" style="width: 100%;">
+                          <option value="" selected="selected">-- Pilih Satu --</option>
+                          @foreach($diagnosa as $data)
+                              <option value="{{$data->id}}">{{$data->indonesian_name}}</option>
+                          @endforeach
+                        </select>  
+                      </div>
+                      <div class="input-group-prepend">
+                          <a class="btn btn-success btn-sm" id="btnAdd" href="#DropDownDiagnosa"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
-                  <th style="width:30%">Alergi</th>
-                  <td>:</td>
-                  <td><textarea name="alergi" class="form-control" id="txtAlergi" rows="2" placeholder="Alergi"></textarea></td>
+                   <th style="width:30%"></th>
+                   <td></td>
+                   <td>
+                      <table style="width:100%;margin-left:-12px;" id="addDropDownDiagnosa">
+                      </table>
+                   </td>
                 </tr>
                 <tr>
                   <th style="width:30%">Catatan</th>
                   <td>:</td>
                   <td><textarea name="catatan" class="form-control" id="txtCatatan" rows="2" placeholder="Catatan"></textarea></td>
-                </tr>
-                <tr>
-                    <th style="width:30%">Tensi</th>
-                    <td>:</td>
-                    <td>
-                      <div class="row">
-                        <div class="input-group col-md-6">
-                          <input type="text" name="tensi" class="form-control{{ $errors->has('tensi') ? ' is-invalid' : '' }}" id="txtTensi" value="{{old('tensi') }}" placeholder="Tensi">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">mmHg</span>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                </tr>
-                <tr>
-                  <th style="width:30%">Tinggi Badan</th>
-                  <td>:</td>
-                  <td>
-                    <div class="row">
-                      <div class="input-group col-md-6">
-                        <input type="text" name="tinggi" class="form-control{{ $errors->has('tinggi') ? ' is-invalid' : '' }}" id="txtTinggi" value="{{old('tinggi') }}" placeholder="Tinggi Badan">  
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">&nbsp;&nbsp;&nbsp;cm&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th style="width:30%">Berat Badan</th>
-                  <td>:</td>
-                  <td>
-                    <div class="row">
-                      <div class="input-group col-md-6">
-                        <input type="text" name="berat" class="form-control{{ $errors->has('berat') ? ' is-invalid' : '' }}" id="txtBerat" value="{{old('berat') }}" placeholder="Berat Badan">  
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;Kg&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th style="width:30%">Temperatur</th>
-                  <td>:</td>
-                  <td>
-                    <div class="row">
-                      <div class="input-group col-md-6">
-                        <input type="text" name="temperatur" class="form-control{{ $errors->has('temperatur') ? ' is-invalid' : '' }}" id="txtTemperatur" value="{{old('temperatur') }}" placeholder="Temperatur">  
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;°C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
                 </tr>
                 <tr>
                   <th style="width:30%">Obat</th>
@@ -300,5 +339,37 @@
       });
     });
   });
+  </script>
+  <script type="text/javascript">
+    $('#btnAdd').bind('click', function(){
+        addRow();
+    });
+
+    function addRow()
+    {
+       var tr = '<tr>'+
+                   '<td>'+
+                      '<div class="row">'+
+                        '<div class="input-group col-md-10">'+
+                          '<select name="diagnosa[]" id="id_diagnosa" class="form-control select2bs4" style="width: 100%;">'+
+                            '<option value="" selected="selected">-- Pilih Satu --</option>'+
+                            '@foreach($diagnosa as $data)'+
+                                '<option value="{{$data->id}}">{{$data->indonesian_name}}</option>'+
+                            '@endforeach'+
+                          '</select>'+  
+                        '</div>'+
+                       /* '<div class="input-group-prepend">'+
+                            '<a class="btn btn-danger btn-sm" id="btnRemove[]" href="#DropDownDiagnosa"><i class="fa fa-minus fa-2x" aria-hidden="true"></i></a>'+
+                        '</div>'+*/
+                      '</div>'+
+                    '</td>'+
+                 '</tr>';
+        
+        $('#addDropDownDiagnosa').append(tr);
+
+        $('#btnRemove').bind('click', '.remove', function(){
+            $(this).parent().parent().remove();
+        });
+    }
   </script>
 @endsection

@@ -60,8 +60,8 @@
 	                </select>
 				      </div>
 				      <div class="form-group">
-					      	<label>Riwayat Alergi</label>
-					        <textarea name="riwayat_alergi" class="form-control" id="txtRiwayatAlergi" rows="2" placeholder="Riwayat Alergi"></textarea>
+					      	<label>Nama Orang Tua</label>
+					        <input type="text" name="nama_orangtua" class="form-control{{ $errors->has('nama_orangtua') ? ' is-invalid' : '' }}" id="txtNamaOrangtua" value="{{old('nama_orangtua') }}" placeholder="Nama Orang Tua">
 					    </div>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 	      jenis_kelamin: {
 	        required: true
 	      },
-	      riwayat_alergi: {
+	      nama_orangtua: {
 	        required: true
 	      },
 	    },
@@ -118,8 +118,8 @@
 	      jenis_kelamin: {
 	        required: "Jenis Kelamin harus dipilih."
 	      },
-	      riwayat_alergi: {
-	        required: "Riwayat Alergi harus diisi."
+	      nama_orangtua: {
+	        required: "Nama Orang Tua harus diisi."
 	      },
 	    },
 	    errorElement: 'span',

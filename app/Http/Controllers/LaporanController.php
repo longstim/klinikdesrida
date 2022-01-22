@@ -25,7 +25,7 @@ class LaporanController extends Controller
                 ->leftjoin('td_rekam_medis AS t1', 'td_berobat.id', '=', 't1.id_berobat')
                 ->leftjoin('td_pembayaran AS t2', 't1.id', '=', 't2.id_rekam_medis')
                 ->leftjoin('md_pasien AS t3', 'td_berobat.id_pasien', '=', 't3.id')
-                ->select('td_berobat.*', 't1.harga AS harga', 't3.nama AS nama', 't3.alamat', 't3.no_hp')
+                ->select('td_berobat.*', 't1.id AS id_rekammedis', 't1.harga AS harga', 't3.NRM AS NRM', 't3.nama AS nama', 't3.alamat', 't3.no_hp')
                 ->get(); 
 
         $newHistoryPasien = array();
@@ -93,7 +93,7 @@ class LaporanController extends Controller
                 ->leftjoin('td_rekam_medis AS t1', 'td_berobat.id', '=', 't1.id_berobat')
                 ->leftjoin('td_pembayaran AS t2', 't1.id', '=', 't2.id_rekam_medis')
                 ->leftjoin('md_pasien AS t3', 'td_berobat.id_pasien', '=', 't3.id')
-                ->select('td_berobat.*', 't1.harga AS harga', 't3.nama AS nama', 't3.alamat', 't3.no_hp', 't2.tanggal_pembayaran')
+                ->select('td_berobat.*', 't1.id AS id_rekammedis', 't3.NRM AS NRM', 't1.harga AS harga', 't3.nama AS nama', 't3.alamat', 't3.no_hp', 't2.tanggal_pembayaran')
                 ->get(); 
 
         $newHistoryPasien = array();
@@ -167,7 +167,7 @@ class LaporanController extends Controller
                 ->leftjoin('td_rekam_medis AS t1', 'td_berobat.id', '=', 't1.id_berobat')
                 ->leftjoin('td_pembayaran AS t2', 't1.id', '=', 't2.id_rekam_medis')
                 ->leftjoin('md_pasien AS t3', 'td_berobat.id_pasien', '=', 't3.id')
-                ->select('td_berobat.*', 't1.harga AS harga', 't3.nama AS nama', 't3.alamat', 't3.no_hp')
+                ->select('td_berobat.*', 't1.id AS id_rekammedis', 't1.harga AS harga', 't3.NRM AS NRM','t3.nama AS nama', 't3.alamat', 't3.no_hp')
                 ->get(); 
 
         $newHistoryPasien = array();
@@ -225,7 +225,7 @@ class LaporanController extends Controller
                 ->leftjoin('td_rekam_medis AS t1', 'td_berobat.id', '=', 't1.id_berobat')
                 ->leftjoin('td_pembayaran AS t2', 't1.id', '=', 't2.id_rekam_medis')
                 ->leftjoin('md_pasien AS t3', 'td_berobat.id_pasien', '=', 't3.id')
-                ->select('td_berobat.*', 't1.harga AS harga', 't3.nama AS nama', 't3.alamat', 't3.no_hp', 't2.tanggal_pembayaran')
+                ->select('td_berobat.*', 't1.id AS id_rekammedis', 't1.harga AS harga', 't3.NRM AS NRM','t3.nama AS nama', 't3.alamat', 't3.no_hp', 't2.tanggal_pembayaran')
                 ->get(); 
 
         $newHistoryPasien = array();

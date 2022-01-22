@@ -23,13 +23,7 @@
         <td align="center" style="font-size:14pt"><b>SIP : 5796/440/SIPD/XI/DS/2015</td>
       </tr>
       <tr valign="top">
-          <td align="center" style="font-size:12pt">Jl. Raya Deli Tua KM 8,5</td>
-      </tr>
-      <tr>
-          <td align="center" style="font-size:12pt">Komplek Sanur Walk Blok B No.1 Deli Tua</td>
-      </tr>
-      <tr valign="top">
-          <td align="center" style="font-size:12pt">Telp: 061 - 42071507</td>
+          <td align="center" style="font-size:12pt">Jl. Raya Deli Tua KM 8,5 Komplek Sanur Walk Blok B No.1 Deli Tua, Telp: 061 - 42071507</td>
       </tr>
   </table>
   <hr style="border:2px solid black;color:black;background-color:black;" width="750">
@@ -37,54 +31,40 @@
   <table border=0 width="650">
     <tr>
       <br>
-      <td align="center"><b style="font-size:16pt"><u>BUKTI PEMBAYARAN</u></b><br>
-        No : {{sprintf('%04s', $rekam_medis->id)}}/KUI/{{getBulanRomawi(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y'))}}/{{date("Y",strtotime(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y')))}}<br>
+      <td align="center"><b style="font-size:16pt"><u>SURAT KETERANGAN SAKIT</u></b><br>
+        No : {{sprintf('%04s', $rekam_medis->id)}}/SKS/D/{{getBulanRomawi(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y'))}}/{{date("Y",strtotime(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y')))}}<br>
       </td>
     </tr>
 
     <tr>
       <td>
-         <br><br>
+         <br>
+        <p>
+            Yang bertanda tangan di bawah ini menerangkan bahwa :
+        </p>
         <table border=0 >
-          <tr>
-            <td width="35%">NRM</td>
-            <td>:</td>
-            <td>{{$rekam_medis->NRM}}</td>
-          </tr>
           <tr>
             <td width="35%">Nama</td>
             <td>:</td>
             <td>{{$rekam_medis->nama}}</td>
           </tr>
           <tr>
+            <td>Umur</td>
+            <td>:</td>
+            <td>{{$datasakit["umur"]}} Tahun</td>
+          </tr>
+          <tr>
             <td>Alamat</td>
             <td>:</td>
             <td>{{$rekam_medis->alamat}}</td>
           </tr>
-          <tr>
-            <td>No. HP</td>
-            <td>:</td>
-            <td>{{$rekam_medis->no_hp}}</td>
-          </tr>
-          <tr>
-            <td>Diagnosa</td>
-            <td>:</td>
-            <td style="text-align:justify;">{{diagnosaPasien($rekam_medis->id)}}</td>
-          </tr>
-          <tr>
-            <td>Untuk Pembayaran</td>
-    
-            <td>:</td>
-            <td>{{$rekam_medis->obat}}</td>
-          </tr>
-          <tr>
-            <td>Jumlah Harga</td>
-            <td>:</td>
-            <td>{{formatRupiah($rekam_medis->harga)}}</td>
-          </tr>
-           <tr border="1">
-          </tr>
         </table>
+        <p>
+            Perlu beristirahat karena sakit, selama {{$datasakit["jlh_hari"]}} hari terhitung tanggal {{$datasakit["tanggal_awal"]}} s/d {{$datasakit["tanggal_akhir"]}}.
+        </p>
+        <p>
+            Harap yang berkepentingan maklum.
+        </p>
       </td>
     </tr>
     <tr>

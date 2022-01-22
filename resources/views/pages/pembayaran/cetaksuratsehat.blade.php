@@ -37,8 +37,8 @@
   <table border=0 width="650">
     <tr>
       <br>
-      <td align="center"><b style="font-size:16pt"><u>BUKTI PEMBAYARAN</u></b><br>
-        No : {{sprintf('%04s', $rekam_medis->id)}}/KUI/{{getBulanRomawi(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y'))}}/{{date("Y",strtotime(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y')))}}<br>
+      <td align="center"><b style="font-size:16pt"><u>SURAT KETERANGAN BERBADAN SEHAT</u></b><br>
+        No : {{sprintf('%04s', $rekam_medis->id)}}/SKBS/D/{{getBulanRomawi(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y'))}}/{{date("Y",strtotime(customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y')))}}<br>
       </td>
     </tr>
 
@@ -47,14 +47,14 @@
          <br><br>
         <table border=0 >
           <tr>
-            <td width="35%">NRM</td>
-            <td>:</td>
-            <td>{{$rekam_medis->NRM}}</td>
-          </tr>
-          <tr>
             <td width="35%">Nama</td>
             <td>:</td>
             <td>{{$rekam_medis->nama}}</td>
+          </tr>
+          <tr>
+            <td>Tanggal Lahir</td>
+            <td>:</td>
+            <td>{{$datasehat["tanggal_lahir"]}}</td>
           </tr>
           <tr>
             <td>Alamat</td>
@@ -62,29 +62,31 @@
             <td>{{$rekam_medis->alamat}}</td>
           </tr>
           <tr>
-            <td>No. HP</td>
+            <td>Berat Badan</td>
             <td>:</td>
-            <td>{{$rekam_medis->no_hp}}</td>
+            <td>{{$rekam_medis->berat}} Kg</td>
           </tr>
           <tr>
-            <td>Diagnosa</td>
+            <td>Tinggi Badan</td>
             <td>:</td>
-            <td style="text-align:justify;">{{diagnosaPasien($rekam_medis->id)}}</td>
+            <td>{{$rekam_medis->tinggi}} cm</td>
           </tr>
           <tr>
-            <td>Untuk Pembayaran</td>
-    
+            <td>Golongan Darah</td>
             <td>:</td>
-            <td>{{$rekam_medis->obat}}</td>
-          </tr>
-          <tr>
-            <td>Jumlah Harga</td>
-            <td>:</td>
-            <td>{{formatRupiah($rekam_medis->harga)}}</td>
+            <td></td>
           </tr>
            <tr border="1">
           </tr>
         </table>
+        <p>
+            Dinyatakan bahwa yang diperiksa tersebut adalah berbadan sehat, untuk :
+            <br>
+            <b>{{$datasehat['keperluan']}}</b>
+        </p>
+        <p>
+            Demikianlah surat keterangan ini diperbuat dengan sebenar-benarnya untuk dapat dipergunakan seperlunya.
+        </p>
       </td>
     </tr>
     <tr>
