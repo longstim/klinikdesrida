@@ -29,10 +29,14 @@
 	
 			<div class="card-body">
 				<div class="row">
-				    <div class="col-md-6">
+				    <div class="col-md-5">
 				      <div class="form-group">
 				        <label>Nama Pasien</label>
 				        <input type="text" name="nama" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" id="txtNama" value="{{old('nama') }}" placeholder="Nama Pasien">
+				      </div>
+				      <div class="form-group">
+				        <label>Tempat Lahir</label>
+				        <input type="text" name="tempat_lahir" class="form-control{{ $errors->has('tempat_lahir') ? ' is-invalid' : '' }}" id="txtTempatLahir" value="{{old('tempat_lahir') }}" placeholder="Tempat Lahir">
 				      </div>
 				      <div class="form-group">
 				        <label>Tanggal Lahir</label>
@@ -47,11 +51,11 @@
 				        <label>Nomor HP</label>
 				        <input type="text" name="no_hp" class="form-control{{ $errors->has('no_hp') ? ' is-invalid' : '' }}" id="txtNoHP" value="{{old('no_hp') }}" placeholder="Nomor HP">
 				      </div>
-				      <div class="form-group">
-					      	<label>Alamat</label>
-					        <textarea name="alamat" class="form-control" id="txtAlamat" rows="2" placeholder="Alamat"></textarea>
-					    </div>
-			        <div class="form-group">
+						</div>
+						<div class="col-md-1">
+			        </div>
+            <div class="col-md-5">
+            	<div class="form-group">
 				        <label>Jenis Kelamin</label>
 				         <select name="jenis_kelamin" id="id_jenis_kelamin" class="form-control select2bs4" style="width: 100%;">
 	                    <option value="" selected="selected">-- Pilih Satu --</option>
@@ -60,10 +64,24 @@
 	                </select>
 				      </div>
 				      <div class="form-group">
+              <label>Golongan Darah</label>
+                <select class="form-control select2bs4" name="gol_darah" value="{{ old('gol_darah') }}" required autofocus  style="width: 100%;">
+                    <option value="" selected="selected">-- Pilih Satu --</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                </select>
+              </div>
+				      <div class="form-group">
 					      	<label>Nama Orang Tua</label>
 					        <input type="text" name="nama_orangtua" class="form-control{{ $errors->has('nama_orangtua') ? ' is-invalid' : '' }}" id="txtNamaOrangtua" value="{{old('nama_orangtua') }}" placeholder="Nama Orang Tua">
 					    </div>
-						</div>
+					    <div class="form-group">
+					      	<label>Alamat</label>
+					        <textarea name="alamat" class="form-control" id="txtAlamat" rows="2" placeholder="Alamat"></textarea>
+					    </div>
+            </div>
 					</div>
 			</div>
 			<!-- /.card-body -->
@@ -86,16 +104,23 @@
 	      nama: {
 	        required: true
 	      },
+	      tempat_lahir: {
+	        required: true
+	      },
 	      tanggal_lahir: {
 	        required: true
 	      },
 	      no_hp: {
-	        required: true
+	        required: true,
+	        number:true
 	      },
 	      alamat: {
 	        required: true
 	      },
 	      jenis_kelamin: {
+	        required: true
+	      },
+	      gol_darah: {
 	        required: true
 	      },
 	      nama_orangtua: {
@@ -106,17 +131,24 @@
 	      nama: {
 	        required: "Nama harus diisi."
 	      },
+	      tempat_lahir: {
+	        required: "Tempat Lahir harus diisi."
+	      },
 	      tanggal_lahir: {
 	        required: "Tanggal Lahir harus diisi."
 	      },
 	      no_hp: {
-	        required: "Nomor HP harus diisi."
+	        required: "Nomor HP harus diisi.",
+	        number: "Nomor HP harus diisi dengan angka.",
 	      },
 	      alamat: {
 	        required: "Alamat harus diisi."
 	      }, 
 	      jenis_kelamin: {
 	        required: "Jenis Kelamin harus dipilih."
+	      },
+	      gol_darah: {
+	        required: "Golongan Darah harus dipilih."
 	      },
 	      nama_orangtua: {
 	        required: "Nama Orang Tua harus diisi."

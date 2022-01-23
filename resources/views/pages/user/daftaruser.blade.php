@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
-@section('page_heading','Daftar Pasien Berobat')
+@section('page_heading','Daftar User')
 @section('breadcrumb')
 <ol class="breadcrumb float-sm-right">
   <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-  <li class="breadcrumb-item active">Daftar Pasien Berobat</li>
+  <li class="breadcrumb-item active">Daftar User</li>
 </ol>
 @endsection
 @section('content')
@@ -25,6 +25,8 @@
 </style>
   <div class="row">
     <div class="col-12">
+      <a href="{{ url('/tambahuser') }}" class="btn btn-success btn-md" role="button">Tambah</a>
+      <p></p>
       <div>
         @if(Session::has('message'))
             <input type="hidden" name="txtMessage" id="idmessage" value="{{Session::has('message')}}"></input>
@@ -38,11 +40,10 @@
             <thead>
             <tr style="background-color:#018975; color:#fff">
               <th>No</th>
-              <th>NRM</th>
               <th>Nama</th>
-              <th>Alamat</th>
-              <th>No. HP</th>
-              <th>Tanggal</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Email</th>
               <th>Tindakan</th>
             </tr>
             </thead>
@@ -50,25 +51,16 @@
             @php
             $no = 0
             @endphp
-            @foreach($pasienberobat as $data)  
+            @foreach($user as $data)  
                <tr>
                   <td>{{++$no}}</td>
-                  <td>{{$data->NRM}}</td>
-                  <td>{{$data->nama}}</td>
-                  <td>{{$data->alamat}}</td>
-                  <td>{{$data->no_hp}}</td>
-                  <td>{{customTanggalDateTime($data->tanggal_berobat, 'd-m-Y H:i:s')}}</td>
+                  <td>{{$data->name}}</td>
+                  <td>{{$data->username}}</td>
+                  <td>{{$data->role}}</td>
+                  <td>{{$data->email}}</td>
                   <td style="text-align:center;">
-                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id_pasien}}">Detail</a>&nbsp;
-                    @php
-                        if(Auth::user()->role == "admin" || Auth::user()->role == "dokter")
-                        {
-                    @endphp
-                    <a class="btn btn-info btn-sm" href="pemeriksaanpasien/{{$data->id}}">Tangani</a>
-                    @php
-                      }
-                    @endphp
-
+                    <a class="btn btn-warning btn-sm" href="ubahuser/{{$data->id}}">Edit</a>&nbsp;
+                    <a class="btn btn-danger btn-sm swalDelete" href="hapususer/{{$data->id}}">Hapus</a>&nbsp;
                   </td>
                </tr>
             @endforeach

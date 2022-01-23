@@ -32,26 +32,60 @@
             <input type="hidden" name="txtMessage_text" id="idmessage_text" value="{{Session::get('message')}}"></input>
         @endif
       </div>
+    <div class="row">
+      <div class="col-md-6">
+         <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:30%">NRM</th>
+                 <td>:</td>
+                <td>{{$pasien->NRM}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">Nama</th>
+                 <td>:</td>
+                <td>{{$pasien->nama}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">Alamat</th>
+                 <td>:</td>
+                <td>{{$pasien->alamat}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">No. HP</th>
+                 <td>:</td>
+                <td>{{$pasien->no_hp}}</td>
+              </tr>
+            </table>
+        </div>
+      </div>
 
-     <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th style="width:30%">NRM</th>
-            <td>{{$pasien->NRM}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">Nama</th>
-            <td>{{$pasien->nama}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">Alamat</th>
-            <td>{{$pasien->alamat}}</td>
-          </tr>
-          <tr>
-            <th style="width:30%">No. HP</th>
-            <td>{{$pasien->no_hp}}</td>
-          </tr>
-        </table>
+      <div class="col-md-6">
+         <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:30%">TTL</th>
+                 <td>:</td>
+                <td>{{$pasien->tempat_lahir.', '.customTanggal($pasien->tanggal_lahir, 'd-m-Y')}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">Jenis Kelamin</th>
+                 <td>:</td>
+                <td>{{$pasien->jenis_kelamin}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">Gol. Darah</th>
+                 <td>:</td>
+                <td>{{$pasien->gol_darah}}</td>
+              </tr>
+              <tr>
+                <th style="width:30%">Nama Orang Tua</th>
+                 <td>:</td>
+                <td>{{$pasien->nama_orangtua}}</td>
+              </tr>
+            </table>
+        </div>
+      </div>
     </div>
     <hr/>
 
@@ -65,7 +99,7 @@
           @foreach($pasienberobat as $data) 
             <tr>
               <td>
-                Tanggal Kedatangan : <b>{{customTanggalDateTime($data->tanggal_berobat, 'm/d/Y')}}</b><br/>
+                Tanggal Kedatangan : <b>{{customTanggalDateTime($data->tanggal_berobat, 'd-m-Y H:i:s')}} WIB</b><br/>
                 Tinggi Badan : <b>{{$data->tinggi}} cm</b> <br/>
                 Berat Badan : <b>{{$data->berat}} Kg</b> <br/>
                 Temperatur : <b>{{$data->temperatur}} °C</b> <br/>

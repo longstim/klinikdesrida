@@ -116,7 +116,7 @@
             </a>
           </li>
       @php
-      if(Auth::user()->role == "admin")
+      if(Auth::user()->role == "admin" || Auth::user()->role == "resepsionis")
       {
       @endphp
           <li class="nav-item">
@@ -127,6 +127,12 @@
               </p>
             </a>
           </li>
+      @php
+      }
+
+      if(Auth::user()->role == "admin" || Auth::user()->role == "dokter" || Auth::user()->role == "resepsionis")
+      {
+      @endphp
 
           <li class="nav-item">
             <a href="{{url('pasienberobat')}}" class="nav-link">
@@ -136,6 +142,13 @@
               </p>
             </a>
           </li>
+
+      @php
+      }
+
+      if(Auth::user()->role == "admin" || Auth::user()->role == "dokter")
+      {
+      @endphp
           <li class="nav-item">
             <a href="{{url('pembayaran')}}" class="nav-link">
               <i class="nav-icon fas fa-hospital"></i>
@@ -157,18 +170,49 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url('laporanpasienberobat')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-chevron-right nav-icon"></i>
                   <p>Pasien Berobat</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url('laporanpembayaran')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-chevron-right nav-icon"></i>
                   <p>Pembayaran</p>
                 </a>
               </li>
             </ul>
           </li>
+
+      @php
+      }
+
+      if(Auth::user()->role == "admin")
+      {
+      @endphp
+        <!--Setting-->
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Setting
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('user')}}" class="nav-link">
+                  <i class="fas fa-chevron-right nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+              <!--<li class="nav-item">
+                <a href="{{url('role')}}" class="nav-link">
+                  <i class="fas fa-chevron-right nav-icon"></i>
+                  <p>Role</p>
+                </a>
+              </li>-->
+            </ul>
+        </li>
       @php
       }
       @endphp

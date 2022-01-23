@@ -73,3 +73,16 @@ Route::post('cariLaporanPasienBerobat', 'LaporanController@cariLaporanPasienBero
 Route::post('cariLaporanPembayaran', 'LaporanController@cariLaporanPembayaran');
 
 
+//Setting
+
+Route::get('user', 'SettingController@daftaruser');
+
+Route::get('tambahuser', 'SettingController@tambahuser');
+
+Route::post('prosestambahuser', 'SettingController@prosestambahuser');
+
+Route::get('ubahuser/{id_user}','SettingController@ubahuser');
+
+Route::post('prosesubahuser','SettingController@prosesubahuser');
+
+Route::get('hapususer/{id_user}','SettingController@hapususer');

@@ -97,7 +97,7 @@
                   <td>{{customTanggalDateTime($data['tanggal_berobat'], 'd-m-Y')}}</td>
                   <td>{{$data['status']}}</td>
                   <td style="text-align:center;">
-                    <a class="btn btn-primary btn-sm" href="ubahpasien/{{$data['id']}}">Detail</a>&nbsp;
+                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data['id_pasien']}}">Detail</a>&nbsp;
                   </td>
                </tr>
             @endforeach

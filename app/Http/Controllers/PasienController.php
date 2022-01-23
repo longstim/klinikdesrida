@@ -49,10 +49,12 @@ class PasienController extends Controller
 
         $data = array(
           'nama' => $request->input('nama'),
+          'tempat_lahir' => $request->input('tempat_lahir'),
           'tanggal_lahir' => $newTanggalLahir,
           'no_hp' => $request->input('no_hp'),
           'alamat' => $request->input('alamat'),
           'jenis_kelamin' => $request->input('jenis_kelamin'),
+          'gol_darah' => $request->input('gol_darah'),
           'nama_orangtua' => $request->input('nama_orangtua'),
         );
 
@@ -83,10 +85,12 @@ class PasienController extends Controller
 
         $data = array(
           'nama' => $request->input('nama'),
+          'tempat_lahir' => $request->input('tempat_lahir'),
           'tanggal_lahir' => $newTanggalLahir,
           'no_hp' => $request->input('no_hp'),
           'alamat' => $request->input('alamat'),
           'jenis_kelamin' => $request->input('jenis_kelamin'),
+          'gol_darah' => $request->input('gol_darah'),
           'nama_orangtua' => $request->input('nama_orangtua'),
         );
 

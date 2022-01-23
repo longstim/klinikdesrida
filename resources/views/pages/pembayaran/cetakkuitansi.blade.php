@@ -12,7 +12,7 @@
   <link REL="shortcut icon" HREF="/favicon.ico" TYPE="image/x-icon">
 </head>
 
-<body bgcolor="white"> <!--onload="window.print()">-->
+<body bgcolor="white" onload="window.print()">
 <font face="arial">
 <center>
    <table border="0" width="650" cellpadding="1" cellspacing="0" id="kopsurat">
@@ -47,38 +47,44 @@
          <br><br>
         <table border=0 >
           <tr>
-            <td width="35%">NRM</td>
+            <td>NRM</td>
+            <td width="40px"></td>
             <td>:</td>
             <td>{{$rekam_medis->NRM}}</td>
           </tr>
           <tr>
-            <td width="35%">Nama</td>
+            <td>Nama</td>
+            <td width="40px"></td>
             <td>:</td>
             <td>{{$rekam_medis->nama}}</td>
           </tr>
           <tr>
             <td>Alamat</td>
+            <td width="40px"></td>
             <td>:</td>
             <td>{{$rekam_medis->alamat}}</td>
           </tr>
           <tr>
             <td>No. HP</td>
+            <td width="40px"></td>
             <td>:</td>
             <td>{{$rekam_medis->no_hp}}</td>
           </tr>
           <tr>
             <td>Diagnosa</td>
+            <td width="40px"></td>
             <td>:</td>
             <td style="text-align:justify;">{{diagnosaPasien($rekam_medis->id)}}</td>
           </tr>
           <tr>
             <td>Untuk Pembayaran</td>
-    
+            <td width="40px"></td>
             <td>:</td>
             <td>{{$rekam_medis->obat}}</td>
           </tr>
           <tr>
             <td>Jumlah Harga</td>
+            <td width="40px"></td>
             <td>:</td>
             <td>{{formatRupiah($rekam_medis->harga)}}</td>
           </tr>

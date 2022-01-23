@@ -28,6 +28,10 @@
     padding: 0 rem;
   }
 </style>
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
   <div class="row">
     <div class="col-12">
       <div>
@@ -152,28 +156,27 @@
                    <td>:</td>
                   <td>
                     <div class="row" id="DropDownDiagnosa">
-                      <div class="input-group col-md-10">
-                        <select name="diagnosa[]" id="id_diagnosa" class="form-control select2bs4" style="width: 100%;">
-                          <option value="" selected="selected">-- Pilih Satu --</option>
+                      <div class="input-group col-md-12">
+                        <select name="diagnosa[]" id="id_diagnosa" class="form-control select2bs4" multiple="multiple" style="width: 100%;" data-placeholder="Diagnosa">
                           @foreach($diagnosa as $data)
                               <option value="{{$data->id}}">{{$data->indonesian_name}}</option>
                           @endforeach
                         </select>  
                       </div>
-                      <div class="input-group-prepend">
+                      <!--<div class="input-group-prepend">
                           <a class="btn btn-success btn-sm" id="btnAdd" href="#DropDownDiagnosa"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
-                      </div>
+                      </div>-->
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <!--<tr>
                    <th style="width:30%"></th>
                    <td></td>
                    <td>
                       <table style="width:100%;margin-left:-12px;" id="addDropDownDiagnosa">
                       </table>
                    </td>
-                </tr>
+                </tr>-->
                 <tr>
                   <th style="width:30%">Catatan</th>
                   <td>:</td>
@@ -215,6 +218,8 @@
   </div>
 
   <script src="{{asset('js/jquery.min.js')}}"></script>
+  <!-- Select2 -->
+  <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
   <script>
     $( document ).ready(function () {
 
@@ -248,7 +253,8 @@
           required: true
         },
         harga: {
-          required: true
+          required: true,
+          number:true
         },
       },
       messages: {
@@ -280,7 +286,8 @@
           required: "Obat harus diisi."
         },
         harga: {
-          required: "Harga harus diisi."
+          required: "Harga harus diisi.",
+          number: "Harga harus diisi dengan angka.",
         },
       },
 
@@ -341,6 +348,7 @@
   });
   </script>
   <script type="text/javascript">
+
     $('#btnAdd').bind('click', function(){
         addRow();
     });

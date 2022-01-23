@@ -95,15 +95,16 @@
                   <td>{{$data['alamat']}}</td>
                   <td>{{$data['no_hp']}}</td>
                   <td>{{customTanggalDateTime($data['tanggal_pembayaran'], 'd-m-Y')}}</td>
-                  <td>{{formatRUpiah($data['harga'])}}</td>
+                  <td>{{formatRupiah($data['harga'])}}</td>
                   <td>
                     <div class="btn-group">
                       <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">Cetak
                       <span class="caret"></span>
                       </button>
                       <div class="dropdown-menu" id="dropdown-action-id">
-                        <a class="dropdown-item" href="{{url('cetaksuratsakit')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sakit">Surat Sakit</a>
-                        <a class="dropdown-item" href="{{url('cetaksuratsehat')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sehat">Surat Sehat</a>
+                        <a class="dropdown-item" href="{{url('cetaksuratsakit')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sakit" onclick ="changeIDRMSakit({{$data['id_rekammedis']}})">Surat Sakit</a>
+                        <a class="dropdown-item" href="{{url('cetaksuratsehat')}}" type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-detail-sehat" onclick ="changeIDRMSehat({{$data['id_rekammedis']}})">Surat Sehat</a>
+                        <a class="dropdown-item" href="{{url('cetakkuitansi/'.$data['id_rekammedis'])}}" type="button" class="btn btn-success float-right">Kuitansi</a>
                       </div>
                     </div>
                   </td>
@@ -119,6 +120,7 @@
     <!-- /.col -->
   </div>
 
+
   <!-- Modal Surat Sakit-->
 <div class="modal fade" id="modal-detail-sakit">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -129,17 +131,16 @@
       <!-- jquery validation -->
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title">Cetak Surat Sakit</h3>
+            <h3 class="card-title">Cetak Surat Keterangan Sakit</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
           <form role="form" id="cetaksuratsakit" method="post" action="{{url('cetaksuratsakit')}}" >
             {{ csrf_field() }}
-      
+          <input type="hidden" name="id_header_sakit" class="form-control" id="txtIDHeaderSakit"></input>
           <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="hidden" name="id_header" class="form-control" id="txtIDHeader" value="{{$data['id_rekammedis']}}"></input>
                     <div class="form-group">
                       <label>Tanggal Sakit</label>
                       <div class="row">
@@ -168,6 +169,7 @@
                         </div>
                     </div>
                   </div>
+                </div>
               </div>
           </div>
           <!-- /.card-body -->
@@ -194,34 +196,41 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" id="cetaksuratsakit" method="post" action="{{url('cetaksuratsehat')}}" >
+          <form role="form" id="cetaksuratsehat" method="post" action="{{url('cetaksuratsehat')}}" >
             {{ csrf_field() }}
-      
+            <input type="hidden" name="id_header_sehat" class="form-control" id="txtIDHeaderSehat"></input>
           <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
-                    <input type="hidden" name="id_header" class="form-control" id="txtIDHeader" value="{{$data['id_rekammedis']}}"></input>
+              <div class="col-md-12">
                     <div class="form-group">
+                      <label>Keperluan</label>
                       <div class="row">
                          <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Untuk Keperluan</label>
-                            <input type="text" name="keperluan" class="form-control" id="txtKeperluan" Placeholder="Keperluan"></textarea>
-                          </div>
-                      </div>
+                           <div class="row">
+                              <div class="col-md-10">
+                                <div class="input-group date">
+                                    <input type="text" name="keperluan" class="form-control{{ $errors->has('keperluan') ? ' is-invalid' : '' }}" id="txtKeperluan" value="{{old('keperluan') }}" placeholder="Keperluan">
+                                </div>
+                              </div>
+                              <div class="col-md-2">
+                                <button type="submit" id="cetakdetailsuratsakit" class="btn btn-secondary">Cetak &nbsp;<i class="fas fa-print"></i></button>
+                              </div>
+                            </div>
+                        </div>
                     </div>
               </div>
+            </div>
           </div>
           <!-- /.card-body -->
-          <div class="card-footer float-right">
+          <!--<div class="card-footer float-right">
                <button type="submit" id="cetakdetailsuratsehat" class="btn btn-secondary">Cetak &nbsp;<i class="fas fa-print"></i></button>
-          </div>
+          </div>-->
           </form>
+          </div>
         </div>
       </div>
     </div>
-      </div>
-    </div>
+  </div>
 </div>
 <!-- Modal Surat Sehat-->
 
@@ -292,6 +301,11 @@
     });
 
     //datepicker
+    $('#datepicker2').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    })
+
     $('#datepickerawal').datepicker({
       format: 'dd/mm/yyyy',
       autoclose: true
@@ -302,7 +316,59 @@
       autoclose: true
     })
 
-   });
+    $('#cetaksuratsehat').validate({
+      rules: {
+        keperluan: {
+          required: true
+        },
+      },
+      messages: {
+        nama: {
+          keperluan: "Keperluan harus diisi.",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
 
+   });
+  </script>
+  <script type="text/javascript">
+    function changeIDRMSakit(id_rekammedis)
+    {
+      //alert(id_rekammedis);
+
+      if(id_rekammedis!="")
+      {
+         $("#txtIDHeaderSakit").val(id_rekammedis);
+      }
+      else
+      { 
+         $("#txtIDHeaderSakit").val("");
+      }
+    }
+
+    function changeIDRMSehat(id_rekammedis)
+    {
+      //alert(id_rekammedis);
+
+      if(id_rekammedis!="")
+      {
+         $("#txtIDHeaderSehat").val(id_rekammedis);
+      }
+      else
+      { 
+         $("#txtIDHeaderSehat").val("");
+      }
+    }
   </script>
 @endsection
