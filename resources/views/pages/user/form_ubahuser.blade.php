@@ -65,7 +65,7 @@
 	                    <option value="" selected="selected">-- Pilih Satu --</option>
 	                    <option value="admin" @if($user->role == "admin") selected @endif>Administrator</option>
 	                    <option value="dokter" @if($user->role == "dokter") selected @endif>Dokter</option>
-	                    <option value="resepsionis" @if($user->role == "resepsionis") selected @endif>Resepsionis</option>
+	                    <option value="resepsionis" @if($user->role == "resepsionis") selected @endif>Suster</option>
 	                </select>
 	               @if ($errors->has('role'))
                     <span class="invalid-feedback" role="alert">
@@ -116,12 +116,6 @@
 	        required: true
 	      },
 	      email: {
-	        required: true
-	      },
-	      password: {
-	        required: true
-	      },
-	      password_confirmation: {
 	        required: true
 	      },
 	    },

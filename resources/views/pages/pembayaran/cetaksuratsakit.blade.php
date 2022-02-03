@@ -17,16 +17,13 @@
 <center>
    <table border="0" width="650" cellpadding="1" cellspacing="0" id="kopsurat">
       <tr>
-        <td align="center" style="font-size:25pt"><b>Klinik dr. Yoseph Christian</td>
+        <td align="center" style="font-size:20pt"><b>Praktek dr. Yoseph Christian & dr. Desrida</td>
       </tr>
-      <tr>
-        <td align="center" style="font-size:14pt"><b>SIP : 5796/440/SIPD/XI/DS/2015</td>
+       <tr valign="top">
+          <td align="center" style="font-size:12pt">Jl. Raya Deli Tua KM 8,5</td>
       </tr>
        <tr>
           <td align="center" style="font-size:12pt">Komplek Sanur Walk Blok B No.1 Deli Tua</td>
-      </tr>
-      <tr valign="top">
-          <td align="center" style="font-size:12pt">Telp: 061 - 42071507</td>
       </tr>
   </table>
   <hr style="border:2px solid black;color:black;background-color:black;" width="750">
@@ -85,7 +82,7 @@
             <td align="center">
               Deli Tua, {{customTanggalDateTime($rekam_medis->tanggal_ditangani, 'd M Y')}}<br>
               <br><br><br><br>
-              <b>dr. Yoseph Christian</b>
+              <b>{{$penandatangan}}</b>
             </td>
           </tr>
         </table>

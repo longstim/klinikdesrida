@@ -76,7 +76,9 @@ class PembayaranController extends Controller
                 ->select('td_rekam_medis.*', 't2.NRM AS NRM','t2.nama AS nama', 't2.alamat', 't2.no_hp')
                 ->first(); 
 
-        return view('pages.pembayaran.cetakkuitansi', compact('rekam_medis'));
+        $penandatangan = Auth::user()->name; 
+
+        return view('pages.pembayaran.cetakkuitansi', compact('rekam_medis','penandatangan'));
     }
 
     public function cetaksuratsakit(Request $request)
@@ -154,7 +156,9 @@ class PembayaranController extends Controller
             DB::table('td_surat_sakit')->where('id_rekam_medis','=', $request->input('id_header_sakit'))->update($dataNoSurat);
         }
 
-        return view('pages.pembayaran.cetaksuratsakit', compact('rekam_medis', 'datasakit'));
+        $penandatangan = Auth::user()->name; 
+
+        return view('pages.pembayaran.cetaksuratsakit', compact('rekam_medis', 'datasakit', 'penandatangan'));
     }
 
     public function cetaksuratsehat(Request $request)
@@ -213,8 +217,9 @@ class PembayaranController extends Controller
                 'keperluan' => $request->input('keperluan'),
             );
         }
-        
 
-        return view('pages.pembayaran.cetaksuratsehat', compact('rekam_medis', 'datasehat'));
+        $penandatangan = Auth::user()->name; 
+
+        return view('pages.pembayaran.cetaksuratsehat', compact('rekam_medis', 'datasehat', 'penandatangan'));
     }
 }

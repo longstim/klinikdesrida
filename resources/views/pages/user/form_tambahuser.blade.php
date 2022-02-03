@@ -54,7 +54,7 @@
 	                    <option value="" selected="selected">-- Pilih Satu --</option>
 	                    <option value="admin">Administrator</option>
 	                    <option value="dokter">Dokter</option>
-	                    <option value="resepsionis">Resepsionis</option>
+	                    <option value="resepsionis">Suster</option>
 	                </select>
 	                @if ($errors->has('role'))
 	                    <span class="invalid-feedback" role="alert">

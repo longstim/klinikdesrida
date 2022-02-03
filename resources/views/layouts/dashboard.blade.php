@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Klinik dr. Yoseph Christian</title>
+  <title>Praktek dr. Yoseph Christian & dr. Desrida</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
@@ -41,7 +41,7 @@
       </li>
 
     </ul>
-    <h5>Selamat Datang di Sistem Informasi Klinik dr. Yoseph Christian</h5>
+    <h5>Sistem Informasi Praktek dr. Yoseph Christian & dr. Desrida</h5>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Logout Dropdown Menu 
@@ -84,20 +84,20 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
-      <img src="{{asset('image/logo.png')}}" alt="Klinik dr. Desrida" class="brand-image img-circle"
+      <img src="{{asset('image/logo.png')}}" alt="Praktek dr. Yoseph Christian & dr. Desrida" class="brand-image img-circle"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">dr. Yoseph Christian</span>
+      <span class="brand-text font-weight-light">{{ Auth::user()->name }}</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-2 pb-2 mb-2 d-flex">
         <div class="image">
-          <img src="{{asset('assets/image/user-image.png')}}" class="img-circle elevation-2" alt="User Image">
+          <!-- <img src="{{asset('assets/image/user-image.png')}}" class="img-circle elevation-2" alt="User Image"-->
         </div>
         <div class="info">
-          <a href="#" class="d-block"> {{ Auth::user()->name }}</a>
+          <a href="#" class="d-block"> M E N U</a>
         </div>
       </div>
 
@@ -267,7 +267,7 @@
         <!-- Anything you want-->
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

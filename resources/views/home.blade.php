@@ -7,16 +7,10 @@
         <center>
        <table border="0" cellpadding="1" cellspacing="0" id="kopsurat">
           <tr>
-            <td align="center" style="font-size:25pt"><b>Klinik dr. Yoseph Christian</b></td>
-          </tr>
-          <tr>
-            <td align="center" style="font-size:14pt"><b>SIP : 5796/440/SIPD/XI/DS/2015</b></td>
+            <td align="center" style="font-size:25pt"><b>Praktek dr. Yoseph Christian & dr. Desrida</b></td>
           </tr>
           <tr valign="top">
               <td align="center" style="font-size:12pt">Jl. Raya Deli Tua KM 8,5 Komplek Sanur Walk Blok B No.1 Deli Tua</td>
-          </tr>
-          <tr valign="top">
-              <td align="center" style="font-size:12pt">Telp: 061 - 42071507</td>
           </tr>
       </table>
       </center>

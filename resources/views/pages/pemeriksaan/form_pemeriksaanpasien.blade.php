@@ -159,7 +159,7 @@
                       <div class="input-group col-md-12">
                         <select name="diagnosa[]" id="id_diagnosa" class="form-control select2bs4" multiple="multiple" style="width: 100%;" data-placeholder="Diagnosa">
                           @foreach($diagnosa as $data)
-                              <option value="{{$data->id}}">{{$data->indonesian_name}}</option>
+                              <option value="{{$data->id}}">{{$data->category.' - '.$data->indonesian_name}}</option>
                           @endforeach
                         </select>  
                       </div>
