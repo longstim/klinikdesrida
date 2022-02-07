@@ -71,6 +71,7 @@
                     <option value="B">B</option>
                     <option value="AB">AB</option>
                     <option value="O">O</option>
+                    <option value="Tidak Diketahui">Tidak Diketahui</option>
                 </select>
               </div>
 				      <div class="form-group">

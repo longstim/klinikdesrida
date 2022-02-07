@@ -60,7 +60,7 @@
                   <td>{{$data->no_hp}}</td>
                   <td style="text-align:center;">
                     <a class="btn btn-warning btn-sm" href="ubahpasien/{{$data->id}}">Edit</a>&nbsp;
-                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id}}">Detail</a>&nbsp;
+                    <!--<a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id}}">Detail</a>&nbsp;-->
                     <a class="btn btn-info btn-sm" href="pasienberobat/{{$data->id}}">Berobat</a>
                   </td>
                </tr>

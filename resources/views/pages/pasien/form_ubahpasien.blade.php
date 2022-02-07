@@ -73,6 +73,7 @@
 	                    <option value="B" @if($pasien->gol_darah == "B") selected @endif>B</option>
                       <option value="AB" @if($pasien->gol_darah == "AB") selected @endif>AB</option>
                       <option value="O" @if($pasien->gol_darah == "O") selected @endif>O</option>
+                      <option value="Tidak Diketahui" @if($pasien->gol_darah == "Tidak Diketahui") selected @endif>Tidak Diketahui</option>
 	                </select>
 				      </div>
 				     	<div class="form-group">

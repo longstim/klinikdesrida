@@ -59,11 +59,11 @@
                   <td>{{$data->no_hp}}</td>
                   <td>{{customTanggalDateTime($data->tanggal_berobat, 'd-m-Y H:i:s')}}</td>
                   <td style="text-align:center;">
-                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id_pasien}}">Detail</a>&nbsp;
                     @php
                         if(Auth::user()->role == "admin" || Auth::user()->role == "dokter")
                         {
                     @endphp
+                    <a class="btn btn-primary btn-sm" href="detailpasien/{{$data->id_pasien}}">Detail</a>&nbsp;
                     <a class="btn btn-info btn-sm" href="pemeriksaanpasien/{{$data->id}}">Tangani</a>
                     @php
                       }
